@@ -6,6 +6,7 @@ const start = document.getElementById('start');
 
     const gridElement = document.getElementById('grid');
     const difficolta = document.getElementById('selector-difficolta').value;
+   
 
     if(difficolta == 0){
 
@@ -22,7 +23,7 @@ const start = document.getElementById('start');
         
             gridElement.appendChild(node);
         }
-
+     
     } 
     else if(difficolta==1){
 
@@ -39,7 +40,7 @@ const start = document.getElementById('start');
         
             gridElement.appendChild(node);
         }
-
+      
     }
     else if (difficolta == 2){
 
@@ -56,7 +57,7 @@ const start = document.getElementById('start');
         
             gridElement.appendChild(node);
         }
-
+      
     }
 
 
