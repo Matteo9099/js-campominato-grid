@@ -1,12 +1,16 @@
 // inizializzo variabili
 const start = document.getElementById('start');
+const gridElement = document.getElementById('grid');
+
+
 
 // al click sul pulsante play mostro a video la tabella a seconda della difficoltà inserita
  start.addEventListener('click', function(){
 
-    const gridElement = document.getElementById('grid');
     const difficolta = document.getElementById('selector-difficolta').value;
    
+    // resetto la griglia al click del pulsante
+    gridElement.innerHTML = "";
 
     if(difficolta == 0){
 
