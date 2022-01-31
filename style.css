@@ -67,6 +67,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
 }
 
 .square-crazy{
@@ -77,6 +78,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
 }
 
 .clicked{
