@@ -8,7 +8,7 @@ const difficolta = document.getElementById('selector-difficolta').value;
 
     if(difficolta == 0){
 
-        for(let i=1; i<=81; i++){
+        for(let i=1; i<=100; i++){
 
             const node = document.createElement('div');
             node.classList.add('square-easy');
