@@ -1,69 +1,116 @@
-// inizializzo variabili
-const start = document.getElementById('start');
-const gridElement = document.getElementById('grid');
+
+//  inizializzo variabili
+document.getElementById('start').addEventListener('click',play);
 
 
+// creo la funzione che gestisce il gioco
+function play(){
 
-// al click sul pulsante play mostro a video la tabella a seconda della difficoltà inserita
- start.addEventListener('click', function(){
+    const NUMERO_BOMBE = 16;
 
-    const difficolta = document.getElementById('selector-difficolta').value;
-   
-    // resetto la griglia al click del pulsante
+    console.log('Avvio del gioco');
+
+    const gioco = document.getElementById('grid');
+
+    // resetto il campo di gioco al click
+    const gridElement = document.getElementById('grid');
     gridElement.innerHTML = "";
 
-    if(difficolta == 0){
 
-        for(let i=1; i<=100; i++){
+    const difficolta = document.getElementById('selector-difficolta').value;
 
-            const node = document.createElement('div');
-            node.classList.add('square-easy');
-            node.innerHTML += i;
-            node.addEventListener('click', function(){
-        
-                console.log(this);
-                this.classList.add('clicked');
-            })
-        
-            gridElement.appendChild(node);
-        }
-     
-    } 
-    else if(difficolta==1){
+    let numeroCelle;
+    let celleRiga;
+    const tentativi = [];
 
-        for(let i=1; i<=81; i++){
-
-            const node = document.createElement('div');
-            node.classList.add('square-hard');
-            node.innerHTML += i;
-            node.addEventListener('click', function(){
-        
-                console.log(this);
-                this.classList.add('clicked');
-            })
-        
-            gridElement.appendChild(node);
-        }
-      
-    }
-    else if (difficolta == 2){
-
-        for(let i=1; i<=49; i++){
-
-            const node = document.createElement('div');
-            node.classList.add('square-crazy');
-            node.innerHTML += i;
-            node.addEventListener('click', function(){
-        
-                console.log(this);
-                this.classList.add('clicked');
-            })
-        
-            gridElement.appendChild(node);
-        }
-      
+    switch(difficolta){
+        case "0":
+            numeroCelle = 100;
+            break;
+        case "1":
+            numeroCelle = 81;
+            break;
+        case "2":
+            numeroCelle = 49;
+            break;
     }
 
+    generaGrid(numeroCelle);
 
- })
+    const bomb = generaBombe(NUMERO_BOMBE, numeroCelle);
+    console.log(bomb);
 
+
+    function generaGrid(numeroCelle){
+        celleRiga = Math.sqrt(numeroCelle);
+
+        for(let i=1; i<= numeroCelle; i++){
+            
+            const nodo = document.createElement('div');
+            nodo.classList.add('square');
+
+            const dimensione =  `calc(100% / ${celleRiga})`;
+            nodo.style.width = dimensione;
+            nodo.style.height = dimensione;
+
+            nodo.innerText = i;
+
+            nodo.addEventListener('click', toggleClick);
+
+            gioco.appendChild(nodo);
+
+        }
+        return true;
+    }
+
+    function toggleClick(){
+        this.classList.add('clicked');
+        this.removeEventListener('click',toggleClick);
+
+        const cell = parseInt(this.innerText);
+
+        if(bomb.includes(cell)){
+            terminaGioco();
+        }else{
+            tentativi.push(cell);
+            console.log(tentativi)
+        }
+
+    }   
+
+
+    function terminaGioco(){
+        const square = document.getElementsByClassName('square');
+
+        for(let i=0; i<square.length; i++){
+            if(bomb.includes(parseInt(square[i].innerText))){
+                square[i].classList.add('bomb');
+            }
+            
+            for(let j=0; j<= tentativi.length; j++){
+              console.log("tentativi: " + tentativi.length);
+             break;
+            }
+        }
+    }
+
+
+    // funzione che generi 16 celle contenenti una bomba
+    function generaBombe(numero_bombe, numeroCelle){
+
+        const bombeGenerate = [];
+
+        while(bombeGenerate.length < numero_bombe){
+            const bomba = getRandomNumber(1, numeroCelle);
+            if(!bombeGenerate.includes(bomba)){
+                bombeGenerate.push(bomba);
+            }
+        }
+        return bombeGenerate;
+    }
+
+}
+
+function getRandomNumber(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}

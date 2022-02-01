@@ -58,32 +58,8 @@ body{
     width: 150px;
 }
 
-.square-easy{
+.square{
     border: 1px solid red;
-    width: calc(100% / 10);
-    height: calc(100% / 10);
-    float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-}
-
-.square-hard{
-    border: 1px solid red;
-    width: calc(100% / 9);
-    height: calc(100% / 9);
-    float: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-}
-
-.square-crazy{
-    border: 1px solid red;
-    width: calc(100% / 7);
-    height: calc(100% / 7);
     float: left;
     display: flex;
     align-items: center;
@@ -96,6 +72,11 @@ body{
     color: #000;
 }
 
-.see{
-    display: block;
+.bomb{
+    background-image: url('img/bomb.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: transparent;
 }
+
