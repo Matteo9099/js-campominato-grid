@@ -87,11 +87,12 @@ function play(){
                 square[i].classList.add('bomb');
             }
             
-            for(let j=0; j<= tentativi.length; j++){
-              console.log("tentativi: " + tentativi.length);
-             break;
-            }
         }
+
+        for(let j=0; j<= tentativi.length; j++){
+            console.log("tentativi: " + tentativi.length);
+           break;
+          }
     }
 
 
